@@ -7,6 +7,7 @@ const baseUrl = "http://www.omdbapi.com/"
 
 const searchInput = document.getElementById('searchInput');
 const resultsContainer = document.getElementById('results');
+const filmCountElement = document.getElementById('filmCount'); 
 
 async function searchMovies(query) {
   const response = await fetch(`${baseUrl}?apikey=${apiKey}&s=${query}`);
@@ -45,9 +46,11 @@ function displayResults(movies) {
               <h3>${movie.Title} (${movie.Year})</h3>
           `;
           resultsContainer.appendChild(movieElement);
+          filmCounter(movies.length);
       });
   } else { 
       resultsContainer.innerHTML = '<p>No results found</p>';
+      filmCounter(0);
   }
 }
 
@@ -60,6 +63,10 @@ function debounce(func, wait) {
   };
 }
 
+function filmCounter(count) {
+  filmCountElement.textContent = count;
+}
+
 searchInput.addEventListener('input', debounce(async function () {
   const query = searchInput.value.trim();
   if (query.length > 2) {
@@ -67,5 +74,6 @@ searchInput.addEventListener('input', debounce(async function () {
     displayResults(movies);
   } else {
     resultsContainer.innerHTML = ''; 
+    filmCounter(0)
   }
 }, 300));

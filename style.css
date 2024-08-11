@@ -40,3 +40,10 @@ body, html {
   padding: 8px 0;
   font-size: 32px;
 }
+
+.above {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-right: 3%;
+}
