@@ -31,22 +31,6 @@ async function searchMovies(query) {
   }
 }
 
-function displayResults(movies) {
-  resultsContainer.innerHTML = '';
-  if (movies) {
-    movies.forEach(movie => {
-      const movieElement = document.createElement('div');
-      movieElement.classList.add('movie');
-      movieElement.innerHTML = `
-                <img src="${movie.Poster !== "N/A" ? movie.Poster : 'placeholder.jpg'}" alt="Poster">
-                <h3>${movie.Title} (${movie.Year})</h3>
-            `;
-      resultsContainer.appendChild(movieElement);
-    });
-  } else {
-    resultsContainer.innerHTML = '<p>No results found</p>';
-  }
-}
 
 function displayResults(movies) {
   resultsContainer.innerHTML = '';
